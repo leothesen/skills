@@ -28,3 +28,7 @@ npx skills add leothesen/skills
 
 Or copy a skill's folder into `~/.claude/skills/` to use it in every project, or into `.claude/skills/`
 inside a repo to use it there only.
+
+## Licence
+
+[MIT](LICENSE). Use them, change them, pass them on.
