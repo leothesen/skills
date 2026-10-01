@@ -32,18 +32,28 @@ reading only the bold gives the gist: the project, the outcome, the status, the 
 step. Never bold a whole line, the labels, or filler words. If everything is bold,
 nothing stands out.
 
-**Decision sketch.** Right below the bullets, a small ASCII picture of the question, so
-the user sees the choice before reading it. In a code block so it keeps its spacing.
-Usually a fork: where things stand now on the left, one branch per option, each ending
-in what that option leads to, using the same option names as the picker. When the choice
-is about how something looks or reads, show each option's actual output instead.
-3–6 lines, 70 characters or fewer per line, plain box-drawing characters. Leave it out
-when there's no question.
+**Sketch.** Right below the bullets, an ASCII picture that explains the problem and the
+options visually, so the user understands them without reading the long text they skipped.
+In a code block so it keeps its spacing.
+
+1. **The problem:** draw the real thing — the tables and their links, the services and
+   the calls between them, the steps of a flow, the screen layout — and mark where it
+   breaks or what is missing (`✗`, `?`, `← here`).
+2. **The options:** one small picture per option, showing how that option changes the
+   drawing, labelled with the same names as the picker.
+
+Draw the system, not the decision: a fork of option names that only repeats the picker
+adds nothing. Up to 12 lines, 70 characters or fewer per line. For a trivial or purely
+procedural choice (commit or not, which to do first), leave it out.
 
 ```
-                ┌─ Kitchen fractions → "1⅓ cups", 2 eggs
-"1.33 eggs" ────┼─ Exact decimals    → "1.33 eggs" stays
-                └─ Ship as-is        → live today, fix later
+Problem: deleting a user breaks their orders
+
+  users ──< orders        delete user 42  →  3 orders point at nothing ✗
+
+Soft delete   users(+deleted_at) ──< orders    orders keep their owner
+Cascade       users ──< orders   both deleted  order history lost
+Null owner    users     orders(user = null)    orders kept, anonymous
 ```
 
 ## Asking
@@ -105,9 +115,13 @@ Printed text:
 - Left: **Rounding awkward amounts** like "1.33 eggs"
 
 ```
-                ┌─ Kitchen fractions → "1⅓ cups", 2 eggs
-"1.33 eggs" ────┼─ Exact decimals    → "1.33 eggs" stays
-                └─ Ship as-is        → live today, fix later
+Problem: 4 servings → 3 servings, everything × 0.75
+
+  1¾ cups flour  →  1.3125 cups ✗      2 eggs  →  1.5 eggs ✗
+
+Kitchen fractions   1⅓ cups flour     2 eggs        like a cookbook
+Exact decimals      1.31 cups flour   1.5 eggs      precise, awkward
+Ship as-is          1.3125 cups       1.5 eggs      fix later
 ```
 ~~~~
 
