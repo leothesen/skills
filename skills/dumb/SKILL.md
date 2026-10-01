@@ -17,14 +17,14 @@ if the context was compacted and no longer says where things stand, run one
 
 ## The summary
 
-Plain lines, labels padded so the text lines up. Drop any line that would be empty.
+A markdown bullet list, one bullet per line. Drop any line that would be empty.
 
 ```
-Where:  <project> · <branch or PR, if any>
-Doing:  <the task as an outcome, not a mechanism>
-Why:    <the reason it matters to the user>
-Done:   <finished and verified>
-Left:   <what remains>
+- Where: <project> · <branch or PR, if any>
+- Doing: <the task as an outcome, not a mechanism>
+- Why: <the reason it matters to the user>
+- Done: <finished and verified>
+- Left: <what remains>
 ```
 
 **Bold for skimming.** In each line, bold the 1–4 words that carry its meaning, so that
@@ -34,12 +34,15 @@ nothing stands out.
 
 ## Asking
 
-Call `AskUserQuestion` and put the summary **inside it**, at the top of `question`. The
-picker then shows it right above the choices. Don't print the summary as text before the
-call: it gets skipped, and the picker takes over the screen, so the user chooses without
-context.
+Print the summary as text, then call `AskUserQuestion` in the same turn with nothing in
+between. Keep the summary short so it stays on screen above the picker.
 
-- `question`: the summary lines, a blank line, then the decision as a plain question.
+The summary must be printed text, not part of the picker: the picker shows its whole
+question in bold and prints `**` as literal asterisks, so the key words can't stand out.
+Write the summary as a markdown bullet list (`- Where: …`), one bullet per line, so each
+line stays on its own. Not a code block, because bold doesn't render inside one.
+
+- `question`: only the decision, as a plain question. No summary, no `**`.
 - `header`: 12 characters or fewer, e.g. `Rounding`.
 - `options`: 2–4. `label` is the choice in 5 words or fewer; `description` is what
   happens if they pick it. Recommended first, with ` (Recommended)` ending its label.
@@ -78,15 +81,20 @@ first, and `Reply with a number.`
 
 ## Example
 
-```
-question: |
-  Where:  **recipe-app** · PR #12
-  Doing:  Letting people **scale a recipe** to any number of servings
-  Why:    People cook for 2 or 6, but **every recipe is written for 4**
-  Done:   Scaling **works and is tested**; open for review
-  Left:   **Rounding awkward amounts** like "1.33 eggs"
+Printed text:
 
-  How should **awkward amounts be rounded**?
+```
+- Where: **recipe-app** · PR #12
+- Doing: Letting people **scale a recipe** to any number of servings
+- Why: People cook for 2 or 6, but **every recipe is written for 4**
+- Done: Scaling **works and is tested**; open for review
+- Left: **Rounding awkward amounts** like "1.33 eggs"
+```
+
+Then the picker:
+
+```
+question: How should awkward amounts be rounded?
 header:   Rounding
 options:
   Kitchen fractions (Recommended) — "1⅓ cups", eggs rounded to whole
