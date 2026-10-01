@@ -32,6 +32,20 @@ reading only the bold gives the gist: the project, the outcome, the status, the 
 step. Never bold a whole line, the labels, or filler words. If everything is bold,
 nothing stands out.
 
+**Decision sketch.** Right below the bullets, a small ASCII picture of the question, so
+the user sees the choice before reading it. In a code block so it keeps its spacing.
+Usually a fork: where things stand now on the left, one branch per option, each ending
+in what that option leads to, using the same option names as the picker. When the choice
+is about how something looks or reads, show each option's actual output instead.
+3–6 lines, 70 characters or fewer per line, plain box-drawing characters. Leave it out
+when there's no question.
+
+```
+                ┌─ Kitchen fractions → "1⅓ cups", 2 eggs
+"1.33 eggs" ────┼─ Exact decimals    → "1.33 eggs" stays
+                └─ Ship as-is        → live today, fix later
+```
+
 ## Asking
 
 Print the summary as text, then call `AskUserQuestion` in the same turn with nothing in
@@ -83,13 +97,19 @@ first, and `Reply with a number.`
 
 Printed text:
 
-```
+~~~~
 - Where: **recipe-app** · PR #12
 - Doing: Letting people **scale a recipe** to any number of servings
 - Why: People cook for 2 or 6, but **every recipe is written for 4**
 - Done: Scaling **works and is tested**; open for review
 - Left: **Rounding awkward amounts** like "1.33 eggs"
+
 ```
+                ┌─ Kitchen fractions → "1⅓ cups", 2 eggs
+"1.33 eggs" ────┼─ Exact decimals    → "1.33 eggs" stays
+                └─ Ship as-is        → live today, fix later
+```
+~~~~
 
 Then the picker:
 
