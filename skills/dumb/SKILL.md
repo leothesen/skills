@@ -27,6 +27,11 @@ Done:   <finished and verified>
 Left:   <what remains>
 ```
 
+**Bold for skimming.** In each line, bold the 1–4 words that carry its meaning, so that
+reading only the bold gives the gist: the project, the outcome, the status, the next
+step. Never bold a whole line, the labels, or filler words. If everything is bold,
+nothing stands out.
+
 ## Asking
 
 Call `AskUserQuestion` and put the summary **inside it**, at the top of `question`. The
@@ -75,13 +80,13 @@ first, and `Reply with a number.`
 
 ```
 question: |
-  Where:  recipe-app · PR #12
-  Doing:  Letting people scale a recipe to any number of servings
-  Why:    People cook for 2 or 6, and every recipe is written for 4
-  Done:   Scaling works and is tested; open for review
-  Left:   Rounding awkward amounts like "1.33 eggs"
+  Where:  **recipe-app** · PR #12
+  Doing:  Letting people **scale a recipe** to any number of servings
+  Why:    People cook for 2 or 6, but **every recipe is written for 4**
+  Done:   Scaling **works and is tested**; open for review
+  Left:   **Rounding awkward amounts** like "1.33 eggs"
 
-  How should awkward amounts be rounded?
+  How should **awkward amounts be rounded**?
 header:   Rounding
 options:
   Kitchen fractions (Recommended) — "1⅓ cups", eggs rounded to whole
